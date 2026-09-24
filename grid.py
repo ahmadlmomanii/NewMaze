@@ -13,6 +13,7 @@ class Grid:
         self.rand = random.Random(seed)
         self.path_toggle = 0
         self.color_rotate_counter = 0
+        self.output_file = ""
 
     def init_grid(self) -> None:
         self.grid = [

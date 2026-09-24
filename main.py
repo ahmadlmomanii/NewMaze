@@ -18,6 +18,7 @@ def maze_init() -> tuple[Grid, Cell, Cell, str]:
 
     init_42(maze)
 
+    maze.output_file = file
     grid = maze.grid
 
     start_cell, end_cell = maze.get_start_end(
@@ -85,9 +86,9 @@ def main():
     start_pos = start.position
     end_pos = end.position
 
-    print_hexa_cells(maze, "maze.txt")
+    print_hexa_cells(maze, maze.output_file)
 
-    f = open("maze.txt", "a")
+    f = open(maze.output_file, "a")
 
     f.write("\n\n")
 
