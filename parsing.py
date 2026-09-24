@@ -3,10 +3,12 @@ import os
 
 
 def check_config(
-        values: tuple[int, int, tuple[int, int],tuple[int, int], int, bool, str]
+        values: tuple[int, int, tuple[int, int], tuple[int, int],
+                      int, bool, str]
         ) -> None:
     try:
-        width, height, start_position, end_position, seed, perfect, output_file = values
+        (width, height, start_position,
+            end_position, seed, perfect, output_file) = values
         if height < 1:
             raise ValueError("The height should be more than 1")
         if width < 1:
@@ -15,23 +17,26 @@ def check_config(
             raise ValueError("The 1*1 will not make a maze")
         if start_position == end_position:
             raise ValueError("The entry and exit should be different")
-        if perfect == False:
+        if perfect is False:
             if width == 1 or height == 1:
-                raise ValueError("There is just one path and it is not pacman usable")
+                raise ValueError(
+                    "There is just one path and it is not pacman usable")
             if width == 2 and height == 2:
                 raise ValueError("2 * 2 in not pacman usable")
-        if not(
+        if not (
             0 <= start_position[0] < height and 0 <= start_position[1] < width
         ):
             raise ValueError("Entry is out of the maze")
-        if not(
+        if not (
             0 <= end_position[0] < height and 0 <= end_position[1] < width
         ):
             raise ValueError("Exit is out of the maze")
     except Exception as e:
-            print(e)
+        print(e)
 
-def load_config() -> tuple[int, int, tuple[int, int], tuple[int, int], int, bool, str]:
+
+def load_config() -> tuple[int, int, tuple[int, int],
+                           tuple[int, int], int, bool, str]:
     load_dotenv("config.txt")
 
     try:
@@ -47,7 +52,7 @@ def load_config() -> tuple[int, int, tuple[int, int], tuple[int, int], int, bool
             )
     except Exception:
         print("The Entry is not valid")
-    
+
     try:
         end_position = tuple(
                 int(x) for x in os.environ["EXIT"].split(",")
@@ -71,9 +76,8 @@ def load_config() -> tuple[int, int, tuple[int, int], tuple[int, int], int, bool
         seed = int(os.environ["SEED"])
     except Exception:
         print("Seed input is not right")
-    check_config((width, height, start_position, end_position, seed, perfect, output_file))
+    check_config((width, height, start_position, end_position, seed, perfect,
+                 output_file))
 
-    return width, height, start_position, end_position, seed, perfect, output_file
-
-
-
+    return (width,
+            height, start_position, end_position, seed, perfect, output_file)
