@@ -62,6 +62,9 @@ def choices(maze: Grid, start_cell: Cell, end_cell: Cell):
         try:
             choice = -1
             choice = int(input("Choice? (1-4): "))
+        except KeyboardInterrupt:
+            print()
+            exit()
         except Exception:
             print("enter an integer!!!")
             continue
