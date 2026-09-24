@@ -1,4 +1,29 @@
 class bcolors:
+    """Define ANSI escape sequences for terminal colors and text styles.
+
+    Attributes:
+        RESET: Reset all terminal colors and text styles.
+        BOLD: Apply bold text formatting.
+        UNDERLINE: Apply underline text formatting.
+        DEEP_PURPLE: Display text in deep purple.
+        ELECTRIC_PURPLE: Display text in electric purple.
+        NEON_BLUE: Display text in neon blue.
+        SKY_BLUE: Display text in sky blue.
+        CYAN: Display text in cyan.
+        AQUA: Display text in aqua.
+        NEON_GREEN: Display text in neon green.
+        MINT: Display text in mint.
+        HOT_PINK: Display text in hot pink.
+        PINK: Display text in pink.
+        ORANGE: Display text in orange.
+        GOLD: Display text in gold.
+        RED: Display text in red.
+        CORAL: Display text in coral.
+        WHITE: Display text in white.
+        GREY: Display text in grey.
+        GREEN: Display text in green.
+    """
+
     RESET = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
@@ -19,7 +44,7 @@ class bcolors:
     CORAL = '\033[38;5;203m'
     WHITE = '\033[38;5;255m'
     GREY = '\033[38;5;245m'
-    GREEN = "\033[32m"
+    GREEN = '\033[32m'
 
 
 COLOR_CHOICES: list[tuple[str, str, str]] = [

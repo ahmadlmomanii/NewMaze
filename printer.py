@@ -4,6 +4,13 @@ from typing import TextIO
 
 
 def print_hexa_cells(self, output_file: str) -> None:
+    """
+    Write the hexadecimal representation of the maze to a file.
+
+    Args:
+        self: The maze grid containing the cells to write.
+        output_file: Path to the file where the maze is written.
+    """
     counter = 0
     file: TextIO = open(output_file, "w")
     for line in range(self.height):
@@ -22,6 +29,15 @@ def print_grid(
     end_cell: Cell,
     color: list[tuple[str, str, str]]
 ) -> None:
+    """
+    Print the maze in a colored ASCII representation.
+
+    Args:
+        maze: The maze grid to display.
+        start_cell: The cell representing the maze entry.
+        end_cell: The cell representing the maze exit.
+        color: Color palettes containing wall, 42 logo, and path colors.
+    """
     maze.color_rotate_counter %= 5
     for line in range(maze.height):
         # Cell roof

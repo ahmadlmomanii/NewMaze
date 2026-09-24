@@ -8,7 +8,17 @@ from printer import print_grid, print_hexa_cells
 
 
 def maze_init() -> tuple[Grid, Cell, Cell, str]:
+    """
+    Initialize and generate a new maze.
 
+    Loads the maze configuration, creates the grid, generates the
+    42 pattern, generates the maze using depth-first search, optionally
+    opens additional cells, and calculates the shortest path.
+
+    Returns:
+        A tuple containing the maze, start cell, end cell, and the
+        directions of the shortest path.
+    """
     values = load_config()
     width, height, start_position, end_position, seed, perfect, file = values
 
@@ -35,12 +45,9 @@ def maze_init() -> tuple[Grid, Cell, Cell, str]:
     path = bfs(start_cell, end_cell, maze)
 
     if path:
-        maze.path_init(
-            path,
-            start_position,
-            end_position
-        )
+        maze.path_init(path)
         direction = path_direction(path)
+
     print_grid(
         maze,
         start_cell,
@@ -50,7 +57,18 @@ def maze_init() -> tuple[Grid, Cell, Cell, str]:
     return (maze, start_cell, end_cell, direction)
 
 
-def choices(maze: Grid, start_cell: Cell, end_cell: Cell):
+def choices(maze: Grid, start_cell: Cell, end_cell: Cell) -> None:
+    """
+    Display and handle the interactive maze menu.
+
+    Allows the user to regenerate the maze, toggle the solution path,
+    rotate the maze colors, or quit the program.
+
+    Args:
+        maze: The current maze.
+        start_cell: The maze entry cell.
+        end_cell: The maze exit cell.
+    """
     choice = 0
     while choice != 4:
         if choice in range(5):
@@ -82,7 +100,16 @@ def choices(maze: Grid, start_cell: Cell, end_cell: Cell):
             print("PLEASE ENTER A VALID NUMNBER!!! (1 - 4)")
 
 
-def main():
+def main() -> None:
+    """
+    Run the maze program.
+
+    Initializes the maze, starts the interactive menu, and writes
+    the maze solution information to the output file.
+
+    returns:
+        None.
+    """
     maze, start, end, direction = maze_init()
     choices(maze, start, end)
 

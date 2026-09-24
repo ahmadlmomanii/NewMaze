@@ -6,6 +6,19 @@ def check_config(
         values: tuple[int, int, tuple[int, int], tuple[int, int],
                       int, bool, str]
         ) -> None:
+    """
+    Validate the maze configuration values.
+
+    Args:
+        values: A tuple containing the maze width, height, entry position,
+            exit position, seed, perfect-maze setting, and output filename.
+
+    Raises:
+        ValueError: If any configuration value is invalid.
+
+    returns:
+        None
+    """
     try:
         (width, height, start_position,
             end_position, seed, perfect, output_file) = values
@@ -37,6 +50,18 @@ def check_config(
 
 def load_config() -> tuple[int, int, tuple[int, int],
                            tuple[int, int], int, bool, str]:
+    """
+    Load and validate the maze configuration from the environment.
+
+    Reads the configuration from the config file, converts the values
+    to their required types, validates the configuration, and returns
+    the resulting maze settings.
+
+    Returns:
+        A tuple containing the maze width, height, entry position,
+        exit position, random seed, perfect-maze setting, and output
+        filename.
+    """
     load_dotenv("config.txt")
 
     try:

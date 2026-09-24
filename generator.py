@@ -3,6 +3,16 @@ from grid import Grid
 
 
 def dfs(current: Cell, maze: Grid) -> None:
+    """
+    Generate the maze using Depth First Search algorithm.
+
+    args:
+        current: the cell that starts the first.
+        maze: the grid containing all the cells.
+
+    returns:
+        None.
+    """
     current.visited = True
     visited: list[Cell] = [current]
     while visited:
@@ -17,6 +27,16 @@ def dfs(current: Cell, maze: Grid) -> None:
 
 
 def open_more_cells(grid: list[Cell], maze: Grid) -> None:
+    """
+    a function that open cells to make the maze packman useable.
+
+    args:
+        grid: list contains all all the cells in the maze.
+        maze: the object containing all maze fuctions and attributes
+
+    reutrns:
+        None.
+    """
     for cell in grid:
         if cell.visited and cell not in maze.cells_42:
             cell.late_visited = False
@@ -32,7 +52,15 @@ def open_more_cells(grid: list[Cell], maze: Grid) -> None:
                             break
 
 
-def init_42(maze: Grid):
+def init_42(maze: Grid) -> None:
+    """
+    a function that mark all the 42 cells as visited.
+
+    args:
+        maze: the object containing all maze fuctions and attributes
+    returns:
+        None.
+    """
     if maze.width >= 9 and maze.height >= 7:
         mid = 0
         for cell in maze.grid:

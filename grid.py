@@ -3,7 +3,39 @@ import random
 
 
 class Grid:
-    def __init__(self, cell: type[Cell], height: int, width: int, seed: int):
+    """
+    Represent the maze grid and provide maze related operations.
+
+    The grid manages the maze cells, their positions, visited states,
+    paths, random neighbor selection, and wall manipulation.
+
+    Attributes:
+        height: The number of rows in the grid.
+        width: The number of columns in the grid.
+        cell: The cell class used to create grid cells.
+        cells_42: Cells that form the 42 logo.
+        grid: All cells contained in the maze.
+        path_cells: Cells belonging to the solution path.
+        rand: Random number generator initialized with the given seed.
+        path_toggle: Controls path display state.
+        color_rotate_counter: Tracks the current color palette.
+        output_file: Path or name of the maze output file.
+    """
+    def __init__(
+            self, cell: type[Cell], height: int,
+            width: int, seed: int) -> None:
+        """
+        Initialize a maze grid.
+
+        Args:
+            cell: The class used to create individual maze cells.
+            height: The number of rows in the grid.
+            width: The number of columns in the grid.
+            seed: Seed used to initialize the random number generator.
+
+        returns:
+            None.
+        """
         self.height = height
         self.width = width
         self.cell = cell
@@ -16,6 +48,11 @@ class Grid:
         self.output_file = ""
 
     def init_grid(self) -> None:
+        """
+        Create and initialize all cells in the maze grid.
+
+        Each cell is assigned its position based on its row and column.
+        """
         self.grid = [
             self.cell() for i in range(self.width * self.height)]
         counter = 0
@@ -25,11 +62,27 @@ class Grid:
                 self.grid[counter].position = x, y
                 counter += 1
 
-    def path_init(self, path: list[Cell], start_position, end_position):
+    def path_init(self, path: list[Cell]) -> None:
+        """
+        Initialize the solution path.
+
+        Args:
+            path: Cells that belong to the solution path.
+        """
         for cell in path:
             self.path_cells.append(cell)
 
     def get_start_end(self, start_position, end_position) -> list[Cell]:
+        """
+        Find the cells corresponding to the start and end positions.
+
+        Args:
+            start_position: Position of the starting cell.
+            end_position: Position of the ending cell.
+
+        Returns:
+            A list containing the start cell followed by the end cell.
+        """
         start_end: list[Cell] = [Cell(), Cell()]
         for cell in self.grid:
             if cell.position == start_position:
@@ -39,6 +92,16 @@ class Grid:
         return start_end
 
     def select_neighbor(self, cell: Cell) -> Cell | None:
+        """
+        Select a random unvisited neighboring cell.
+
+        Args:
+            cell: The cell whose neighbors are examined.
+
+        Returns:
+            A randomly selected unvisited neighboring cell, or None if
+            no unvisited neighbors are available.
+        """
         neighbors: list[Cell] = []
 
         index = self.grid.index(cell)
@@ -74,6 +137,16 @@ class Grid:
         return None
 
     def get_neighbors(self, cell: Cell) -> list[Cell] | None:
+        """
+        Get all unvisited neighbors of a cell.
+
+        Args:
+            cell: The cell whose neighbors are examined.
+
+        Returns:
+            A list of unvisited neighboring cells, or None if there
+            are no available neighbors.
+        """
         neighbors: list[Cell] = []
 
         index = self.grid.index(cell)
@@ -107,6 +180,13 @@ class Grid:
         return None
 
     def RemoveWalls(self, current: Cell, next: Cell) -> None:
+        """
+        Remove the wall between two adjacent cells.
+
+        Args:
+            current: The first cell.
+            next: The adjacent cell whose shared wall is removed.
+        """
         if current.position[0] == next.position[0]:
             if current.position[1] > next.position[1]:
                 current.West = 0
@@ -123,6 +203,17 @@ class Grid:
                 next.North = 0
 
     def CheckWalls(self, current: Cell, next: Cell) -> bool:
+        """
+        Check whether two adjacent cells have their shared wall removed.
+
+        Args:
+            current: The first cell.
+            next: The adjacent cell to check.
+
+        Returns:
+            True if the shared wall between the cells is open,
+            otherwise False.
+        """
         if current.position[0] == next.position[0]:
             if current.position[1] > next.position[1]:
                 if current.West == 0 and next.East == 0:
