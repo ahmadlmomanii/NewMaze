@@ -2,6 +2,7 @@ from cell import Cell
 from grid import Grid
 from typing import TextIO
 
+
 def print_hexa_cells(self, output_file: str) -> None:
     counter = 0
     file: TextIO = open(output_file, "w")

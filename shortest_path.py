@@ -33,20 +33,23 @@ def bfs(start: Cell, goal: Cell, maze: Grid) -> list[Cell] | None:
     path.append(start)
     return path[::-1]
 
+
 def path_direction(path: list[Cell]) -> str:
     directions = ""
-    cell_counter = 0
+    counter = 0
     length = len(path)
-    while cell_counter + 1 < length:
-        if path[cell_counter].position[0] == path[cell_counter + 1].position[0]:
-            if path[cell_counter].position[1] > path[cell_counter + 1].position[1]:
+    while counter + 1 < length:
+        if path[counter].position[0] == path[counter + 1].position[0]:
+            if (
+                path[counter].position[1] > path[counter + 1].position[1]
+            ):
                 directions += "W"
             else:
                 directions += "E"
         else:
-            if path[cell_counter].position[0] > path[cell_counter + 1].position[0]:
+            if path[counter].position[0] > path[counter + 1].position[0]:
                 directions += "N"
             else:
                 directions += "S"
-        cell_counter += 1
+        counter += 1
     return directions

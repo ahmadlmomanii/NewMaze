@@ -24,7 +24,9 @@ def maze_init() -> tuple[Grid, Cell, Cell, str]:
         start_position,
         end_position
     )
-
+    if start_cell in maze.cells_42 or end_cell in maze.cells_42:
+        print("Enter valid Entry/Exit position that aren't in 42 cells")
+        exit()
     dfs(grid[0], maze)
     if perfect is False:
         open_more_cells(maze.grid, maze)
@@ -66,7 +68,7 @@ def choices(maze: Grid, start_cell: Cell, end_cell: Cell):
             print("enter an integer!!!")
             continue
         if choice == 1:
-            maze_init()
+            maze = maze_init()[0]
         elif choice == 2:
             maze.path_toggle += 1
             print_grid(maze, start_cell, end_cell, COLOR_CHOICES)
