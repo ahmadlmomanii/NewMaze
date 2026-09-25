@@ -37,7 +37,7 @@ class Cell:
 
         args:
             self: the class object.
-        
+
         returns:
             str Value of the hexa decimal.
         """

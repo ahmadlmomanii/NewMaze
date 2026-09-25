@@ -1,5 +1,5 @@
-from cell import Cell
-from grid import Grid
+from mazegen.cell import Cell
+from mazegen.grid import Grid
 
 
 def dfs(current: Cell, maze: Grid) -> None:

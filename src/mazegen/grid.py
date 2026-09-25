@@ -1,4 +1,4 @@
-from cell import Cell
+from mazegen.cell import Cell
 import random
 
 

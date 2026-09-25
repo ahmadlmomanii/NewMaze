@@ -94,7 +94,15 @@ def load_config() -> tuple[int, int, tuple[int, int],
     start_position = start_position[1], start_position[0]
     end_position = end_position[1], end_position[0]
     try:
-        perfect = bool(os.environ["PERFECT"])
+        perfect_value = str(os.environ["PERFECT"])
+        perfect = False
+        if perfect_value.strip().capitalize == "False":
+            perfect = False
+        elif perfect_value.strip().capitalize() == "True":
+            perfect = True
+        else:
+            print("Put a valid value for perfect")
+            exit()
     except Exception:
         print("Perfect input is not right")
     try:

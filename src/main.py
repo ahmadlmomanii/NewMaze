@@ -1,11 +1,10 @@
 from colors import COLOR_CHOICES
-from cell import Cell
-from generator import init_42, dfs, open_more_cells
-from grid import Grid
+from mazegen.cell import Cell
+from mazegen.generator import init_42, dfs, open_more_cells
+from mazegen.grid import Grid
 from parsing import load_config
 from shortest_path import bfs, path_direction
 from printer import print_grid, print_hexa_cells
-from random import randint
 
 
 def maze_init() -> tuple[Grid, Cell, Cell, str]:
@@ -22,7 +21,7 @@ def maze_init() -> tuple[Grid, Cell, Cell, str]:
     """
     values = load_config()
     width, height, start_position, end_position, seed, perfect, file = values
-
+    print(end_position)
     maze = Grid(Cell, height, width, seed)
 
     maze.init_grid()
@@ -42,6 +41,7 @@ def maze_init() -> tuple[Grid, Cell, Cell, str]:
     dfs(grid[0], maze)
     if perfect is False:
         open_more_cells(maze.grid, maze)
+    print(perfect)
 
     path = bfs(start_cell, end_cell, maze)
 
