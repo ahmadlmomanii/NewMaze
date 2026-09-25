@@ -3,23 +3,23 @@ from grid import Grid
 from typing import TextIO
 
 
-def print_hexa_cells(self, output_file: str) -> None:
+def print_hexa_cells(maze: Grid, output_file: str) -> None:
     """
     Write the hexadecimal representation of the maze to a file.
 
     Args:
-        self: The maze grid containing the cells to write.
+        maze: The maze grid containing the cells to write.
         output_file: Path to the file where the maze is written.
     """
     counter = 0
     file: TextIO = open(output_file, "w")
-    for line in range(self.height):
+    for line in range(maze.height):
         hexa_line: str = ""
-        for cell in range(self.width):
-            hexa_line += (self.grid[counter].hexa_cell())
+        for cell in range(maze.width):
+            hexa_line += (maze.grid[counter].hexa_cell())
             counter += 1
         file.writelines(hexa_line)
-        if line != self.height - 1:
+        if line != maze.height - 1:
             file.writelines("\n")
 
 

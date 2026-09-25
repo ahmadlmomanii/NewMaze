@@ -72,7 +72,8 @@ class Grid:
         for cell in path:
             self.path_cells.append(cell)
 
-    def get_start_end(self, start_position, end_position) -> list[Cell]:
+    def get_start_end(self, start_position: tuple[int, int],
+                      end_position: tuple[int, int]) -> list[Cell]:
         """
         Find the cells corresponding to the start and end positions.
 

@@ -5,6 +5,7 @@ from grid import Grid
 from parsing import load_config
 from shortest_path import bfs, path_direction
 from printer import print_grid, print_hexa_cells
+from random import randint
 
 
 def maze_init() -> tuple[Grid, Cell, Cell, str]:
@@ -69,11 +70,11 @@ def choices(maze: Grid, start_cell: Cell, end_cell: Cell) -> None:
         start_cell: The maze entry cell.
         end_cell: The maze exit cell.
     """
-    choice = 0
+    choice = 1
     while choice != 4:
-        if choice in range(5):
+        if choice in range(1, 5):
             print("=== A-Maze-ing ===")
-            print("1. Re-fenerate a new maze")
+            print("1. Re-generate a new maze")
             print("2. SHow/Hide path from entry to exit")
             print("3. Rotate maze colors")
             print("4. Quit")
