@@ -7,7 +7,8 @@ debug:
 	python3 -m pdb main.py
 
 clean:
-	rm -rf __pycache__ .mypy_cache
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+	find . -type d -name ".mypy_cache" -exec rm -rf {} +
 
 lint:
 	flake8
