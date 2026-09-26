@@ -85,7 +85,7 @@ def load_config() -> tuple[int, int, tuple[int, int],
     except Exception:
         print("The Exit is not valid")
     try:
-        if not os.environ["OUTPUT_FILE"]:
+        if not str(os.environ["OUTPUT_FILE"]):
             raise ValueError("Put a valid name for output file")
         output_file = str(os.environ["OUTPUT_FILE"])
     except Exception as e:
@@ -96,7 +96,7 @@ def load_config() -> tuple[int, int, tuple[int, int],
     try:
         perfect_value = str(os.environ["PERFECT"])
         perfect = False
-        if perfect_value.strip().capitalize == "False":
+        if perfect_value.strip().capitalize() == "False":
             perfect = False
         elif perfect_value.strip().capitalize() == "True":
             perfect = True
